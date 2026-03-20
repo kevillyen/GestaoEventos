@@ -13,6 +13,7 @@ public class ApplicationDbContext : IdentityDbContext
     // Aqui nós declaramos a model que voce acabou de criar!
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Local> Locais { get; set; }
+    public DbSet<Evento> Eventos { get; set; }
 
     //Passo 3
     // Criar a migration que sera responsavel por 

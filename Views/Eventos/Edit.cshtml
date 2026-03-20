@@ -1,0 +1,53 @@
+﻿@model GestaoEventos.Models.Evento
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow border-0 p-4">
+            <h4 class="text-warning mb-3"><i class="fa-solid fa-calendar-check me-2"></i>Editar Evento</h4>
+            <hr />
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Nome" class="form-control" />
+                    <label asp-for="Nome"></label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Data" type="text" id="datepicker"
+                           class="form-control"
+                           value="@Model.Data.ToString("yyyy-MM-dd")" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Categoria</label>
+                    <select asp-for="CategoriaId" class="form-select border-warning" asp-items="ViewBag.CategoriaId"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Local</label>
+                    <select asp-for="LocalId" class="form-select border-warning" asp-items="ViewBag.LocalId"></select>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-warning py-2 fw-bold">Salvar Alterações</button>
+                    <a asp-action="Index" class="btn btn-link text-muted">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        flatpickr("#datepicker", {
+            "locale": "pt",
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "d/m/Y",
+            // Força o calendário a iniciar na data que veio do banco
+            defaultDate: "@Model.Data.ToString("yyyy-MM-dd")"
+        });
+    </script>
+}
